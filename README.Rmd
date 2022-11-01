@@ -17,12 +17,12 @@ knitr::opts_chunk$set(
 options(width = 300)
 ```
 
-# HL7.NCIMS.R
+# HL7.R
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of HL7.NCIMS.R is to enable wrangling of HL7 2.3.1/2.4 in R. This package was
+The goal of HL7.R is to enable wrangling of HL7 2.3.1/2.4 in R. This package was
 driven by the need of HL7 wrangling for NCIMS tasks (a notifiable conditions database for 
 a state health authority). HL7 messages are just flattened list objects, and as such 
 can be imported into R as a nested list.
@@ -36,7 +36,7 @@ Information on HL7 specifications were sourced from:
 
 ### Devops
 
-Clone repo, open `HL7.NCIMS.R.Rproj` and use `devtools`
+Clone repo, open `HL7.R.Rproj` and use `devtools`
 
 ```{r}
 library(devtools)
@@ -49,8 +49,8 @@ Someone built the package and has given you the file - be aware if they built us
 source or binary. Generally, `tar.gz` = source, `zip` = binary
 
 ```{r, eval = F}
-install.packages('HL7.NCIMS.R.xxx.tar.gz', repos = NULL, type = 'source')
-install.packages('HL7.NCIMS.R.xxx.zip', repos = NULL)
+install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
+install.packages('HL7.R.xxx.zip', repos = NULL)
 ```
 
 ### From DRAT
@@ -61,7 +61,7 @@ Look for `./bin` and `./src` in the DRAT folder.
 ```{r, eval = F}
 library(drat)
 drat::addRepo("workgroup", 'file:drive:/path/to/drat')
-install.packages('HL7.NCIMS.R', repos = options()$repos[2]) # assuming binary
+install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
 ```
 
 ## Parsing a HL7
@@ -85,7 +85,7 @@ message are numbered in the output list e.g. OBX.1 OBX.2 (using the Set ID value
 Use `parse_hl7_message()` on a file path.
 
 ```{r}
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/hl7-2.3.1.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/hl7-2.3.1.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 
@@ -127,7 +127,7 @@ with(hl7_list,
 result is a list of parsed messages.
 
 ```{r}
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-batch.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/fake-covid-batch.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 
@@ -150,7 +150,7 @@ Cycle through each file and use `parse_hl7_message()`
 ```{r}
 # Two HL7 files starting with 'fake' are distributed with this package, 
 hl7_files <- 
-  system.file(package = 'HL7.NCIMS.R', 'extdata') %>% 
+  system.file(package = 'HL7.R', 'extdata') %>% 
   list.files(pattern = 'fake-covid-\\d.hl7$', full.names = T)
 
 basename(hl7_files)
@@ -266,7 +266,7 @@ readr::write_csv(some_line_list, file = 'inst/extdata/fake-covid-n2.csv')
 
 ```{r}
 # A 2 row line list with fake data is distributed with this package
-some_line_list <- read.csv(system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-n2.csv'))
+some_line_list <- read.csv(system.file(package = 'HL7.R', 'extdata/fake-covid-n2.csv'))
 some_line_list
 ```
 

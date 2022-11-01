@@ -1,44 +1,45 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# HL7.NCIMS.R
+# HL7.R
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of HL7.NCIMS.R is to enable wrangling of HL7 2.3.1/2.4 in R.
-This package was driven by the need of HL7 wrangling for NCIMS tasks.
-HL7 messages are just flattened list objects, and as such can be
-imported into R as a nested list.
+The goal of HL7.R is to enable wrangling of HL7 2.3.1/2.4 in R. This
+package was driven by the need of HL7 wrangling for NCIMS tasks (a
+notifiable conditions database for a state health authority). HL7
+messages are just flattened list objects, and as such can be imported
+into R as a nested list.
 
 Information on HL7 specifications were sourced from:
 
--   <http://www.hl7.eu/HL7v2x/v231/hl7v231segm.htm>
--   <https://hl7-definition.caristix.com/v2/>
+- <http://www.hl7.eu/HL7v2x/v231/hl7v231segm.htm>
+- <https://hl7-definition.caristix.com/v2/>
 
 ## Installation
 
 ### Devops
 
-Clone repo, open `HL7.NCIMS.R.Rproj` and use `devtools`
+Clone repo, open `HL7.R.Rproj` and use `devtools`
 
 ``` r
 library(devtools)
 #> Loading required package: usethis
 load_all()
-#> i Loading HL7.NCIMS.R
-#> HL7.NCIMS.R - for help see vignette('Getting-started', package = 'HL7.NCIMS.R')
+#> ℹ Loading HL7.R
+#> HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples
 ```
 
 ### From archive
 
-Someone build the package and has given you the file - be aware if they
+Someone built the package and has given you the file - be aware if they
 built using source or binary. Generally, `tar.gz` = source, `zip` =
 binary
 
 ``` r
-install.packages('HL7.NCIMS.R.xxx.tar.gz', repos = NULL, type = 'source')
-install.packages('HL7.NCIMS.R.xxx.zip', repos = NULL)
+install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
+install.packages('HL7.R.xxx.zip', repos = NULL)
 ```
 
 ### From DRAT
@@ -49,7 +50,7 @@ source or binary. Look for `./bin` and `./src` in the DRAT folder.
 ``` r
 library(drat)
 drat::addRepo("workgroup", 'file:drive:/path/to/drat')
-install.packages('HL7.NCIMS.R', repos = options()$repos[2]) # assuming binary
+install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
 ```
 
 ## Parsing a HL7
@@ -67,16 +68,16 @@ the output list e.g. OBX.1 OBX.2 (using the Set ID value).
 
 **Notes**
 
--   All values should be imported as text, and any conversion needs to
-    be done downstream e.g with datetimes
--   A `filename` attribute is attached with the list object
+- All values should be imported as text, and any conversion needs to be
+  done downstream e.g with datetimes
+- A `filename` attribute is attached with the list object
 
 ### Single HL7 message
 
 Use `parse_hl7_message()` on a file path.
 
 ``` r
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/hl7-2.3.1.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/hl7-2.3.1.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 
@@ -157,7 +158,7 @@ with(hl7_list,
 appropriately. The result is a list of parsed messages.
 
 ``` r
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-batch.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/fake-covid-batch.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 #> Found 2 messages within file
@@ -194,7 +195,7 @@ Cycle through each file and use `parse_hl7_message()`
 ``` r
 # Two HL7 files starting with 'fake' are distributed with this package, 
 hl7_files <- 
-  system.file(package = 'HL7.NCIMS.R', 'extdata') %>% 
+  system.file(package = 'HL7.R', 'extdata') %>% 
   list.files(pattern = 'fake-covid-\\d.hl7$', full.names = T)
 
 basename(hl7_files)
@@ -252,14 +253,14 @@ text segment ready for piecing together using the function
 
 **Notes**
 
--   There a default blank values for all the fields in a segment
-    function, and they will be included in the final output as shown
-    below up until the last observed value i.e. trailing blanks are
-    trimmed see the parameter `.trim` in most functions
--   There are helper functions `*Components()` for nested fields. As
-    these are helpers, you can safely skip if you can correctly create
-    the required value
--   Dates/Datetimes can be converted using `datetime_to_hl7_datetime()`
+- There a default blank values for all the fields in a segment function,
+  and they will be included in the final output as shown below up until
+  the last observed value i.e. trailing blanks are trimmed see the
+  parameter `.trim` in most functions
+- There are helper functions `*Components()` for nested fields. As these
+  are helpers, you can safely skip if you can correctly create the
+  required value
+- Dates/Datetimes can be converted using `datetime_to_hl7_datetime()`
 
 ``` r
 example_hl7_build <-
@@ -291,7 +292,7 @@ Conversion of Date and Datetimes
 
 ``` r
 datetime_to_hl7_datetime(Sys.time())
-#> [1] "20220427143232"
+#> [1] "20221101111235"
 ```
 
 `.trim` will trim trailing blank fields. It is `TRUE` by default
@@ -313,12 +314,12 @@ PatientAddressComponents(streetAddress = '123 Fake Street', .trim = FALSE)
 Often we have the task of translating a line list into HL7 messages. A
 simple example is show below:
 
--   loop through the rows using `lapply`
--   convert the row into a list for easy reference e.g. `d$firstname`
+- loop through the rows using `lapply`
+- convert the row into a list for easy reference e.g. `d$firstname`
 
 ``` r
 # A 2 row line list with fake data is distributed with this package
-some_line_list <- read.csv(system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-n2.csv'))
+some_line_list <- read.csv(system.file(package = 'HL7.R', 'extdata/fake-covid-n2.csv'))
 some_line_list
 #>   firstname lastname                street      suburb test_id     text_text result_code result_text                facility
 #> 1     Homer  Simpson 742 Evergreen Terrace Springfield  ncov19 nCoV-2019 PCR           P     Postive      Dr Hibbert Medical
