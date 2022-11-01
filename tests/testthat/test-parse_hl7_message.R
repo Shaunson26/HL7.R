@@ -1,0 +1,180 @@
+test_that("MSH parsing is correct", {
+
+  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_list <- parse_hl7_message(hl7_file)
+
+  segment <- hl7_list$MSH
+
+  # Write text for text ... need to ensure values correct
+  #create_test_text(segment) %>% clipr::write_clip()
+  # zz <- create_test_text(segment)
+  # eval(parse(text = zz))
+
+  # tests
+  expect_equal(segment$EncodingCharacters, "^~\\&")
+  expect_equal(segment$SendingApplication, "NIST Test Lab APP")
+  expect_equal(segment$SendingFacility, "NIST Lab Facility")
+  expect_equal(segment$ReceivingApplication, "")
+  expect_equal(segment$ReceivingFacility, "NIST EHR Facility")
+  expect_equal(segment$DateTimeOfMessage, "20150926140551")
+  expect_equal(segment$Security, "")
+  expect_equal(segment$MessageType$messageType, "ORU")
+  expect_equal(segment$MessageType$triggerEvent, "R01")
+  expect_equal(segment$MessageType$MessageStructure, "ORU_R01")
+  expect_equal(segment$MessageControlID, "NIST-LOI_5.0_1.1-NG")
+  expect_equal(segment$ProcessingID, "T")
+  expect_equal(segment$VersionID, "2.5.1")
+  expect_equal(segment$SequenceNumber, "")
+  expect_equal(segment$ContinuationPointer, "")
+  expect_equal(segment$AcceptAcknowledgmentType, "AL")
+  expect_equal(segment$ApplicationAcknowledgmentType, "AL")
+  expect_equal(segment$CountryCode, "")
+  expect_equal(segment$CharacterSet, "")
+  expect_equal(segment$PrincipalLanguageOfMessage, "")
+  expect_equal(segment$AlternateCharacterSetHandlingScheme, "")
+})
+
+test_that("PID parsing is correct", {
+
+  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_list <- parse_hl7_message(hl7_file)
+
+  segment <- hl7_list$PID
+
+  #create_test_text(segment) %>% clipr::write_clip()
+
+  # tests
+  expect_equal(segment$SetID, "1")
+  expect_equal(segment$PatientID, "")
+  expect_equal(segment$PatientIdentifierList$id, "PATID5421")
+  expect_equal(segment$PatientIdentifierList$checkDigit, "")
+  expect_equal(segment$PatientIdentifierList$codeIdentifyingTheCheckDigitSchemeEmployed, "")
+  expect_equal(segment$PatientIdentifierList$assigningAuthority, "NIST MPI")
+  expect_equal(segment$PatientIdentifierList$identifierTypeCode, "MR")
+  expect_equal(segment$AlternatePatientIDPID, "")
+  expect_equal(segment$PatientName$familyName, "Wilson")
+  expect_equal(segment$PatientName$givenName, "Patrice")
+  expect_equal(segment$PatientName$middleName, "Natasha")
+  expect_equal(segment$PatientName$suffix, "")
+  expect_equal(segment$PatientName$prefix, "")
+  expect_equal(segment$PatientName$degree, "")
+  expect_equal(segment$PatientName$nameTypeCode, "L")
+  expect_equal(segment$MothersMaidenName, "")
+  expect_equal(segment$DateTimeOfBirth, "19820304")
+  expect_equal(segment$Sex, "F")
+  expect_equal(segment$PatientAlias, "")
+  expect_equal(segment$Race$identifier, "2106-3")
+  expect_equal(segment$Race$text, "White")
+  expect_equal(segment$Race$nameOfCodingSystem, "HL70005")
+  expect_equal(segment$PatientAddress$streetAddress, "144 East 12th Street")
+  expect_equal(segment$PatientAddress$otherDesignation, "")
+  expect_equal(segment$PatientAddress$city, "Los Angeles")
+  expect_equal(segment$PatientAddress$stateProvince, "CA")
+  expect_equal(segment$PatientAddress$zipPostcode, "90012")
+  expect_equal(segment$PatientAddress$country, "")
+  expect_equal(segment$PatientAddress$addressType, "H")
+  expect_equal(segment$CountyCode, "")
+  expect_equal(segment$PhoneNumberHome$anyText, "")
+  expect_equal(segment$PhoneNumberHome$telecommunicationUseCode, "PRN")
+  expect_equal(segment$PhoneNumberHome$telecommunicationEquipmentType, "PH")
+  expect_equal(segment$PhoneNumberHome$emailAddress, "")
+  expect_equal(segment$PhoneNumberHome$countryCode, "")
+  expect_equal(segment$PhoneNumberHome$areaCityCode, "203")
+  expect_equal(segment$PhoneNumberHome$phoneNumber, "2290210")
+  expect_equal(segment$PhoneNumberBusiness, "")
+  expect_equal(segment$PrimaryLanguage, "")
+  expect_equal(segment$MaritalStatus, "")
+  expect_equal(segment$Religion, "")
+  expect_equal(segment$PatientAccountNumber, "")
+  expect_equal(segment$SSNNumberPatient, "")
+  expect_equal(segment$DriversLicenseNumberPatient, "")
+  expect_equal(segment$MothersIdentifier, "")
+  expect_equal(segment$EthnicGroup$identifier, "N")
+  expect_equal(segment$EthnicGroup$text, "Not Hispanic or Latino")
+  expect_equal(segment$EthnicGroup$nameOfCodingSystem, "HL70189")
+
+})
+
+test_that("ORC parsing is correct", {
+
+  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_list <- parse_hl7_message(hl7_file)
+
+  segment <- hl7_list$ORC
+
+  #create_test_text(segment) %>% clipr::write_clip()
+
+  # tests
+  expect_equal(segment$OrderControl, "NW")
+  expect_equal(segment$PlacerOrderNumber[[1]], "ORD448811")
+  expect_equal(segment$PlacerOrderNumber[[2]], "NIST EHR")
+  expect_equal(segment$FillerOrderNumber[[1]], "R-511")
+  expect_equal(segment$FillerOrderNumber[[2]], "NIST Lab Filler")
+  expect_equal(segment$PlacerGroupNumber, "")
+  expect_equal(segment$OrderStatus, "")
+  expect_equal(segment$ResponseFlag, "")
+  expect_equal(segment$QuantityTiming, "")
+  expect_equal(segment$Parent, "")
+  expect_equal(segment$DateTimeofTransaction, "20120628070100")
+  expect_equal(segment$EnteredBy, "")
+  expect_equal(segment$VerifiedBy, "")
+  expect_equal(segment$OrderingProvider$idNumber, "5742200012")
+  expect_equal(segment$OrderingProvider$familyNameAndLastNamePrefix, "Radon")
+  expect_equal(segment$OrderingProvider$givenName, "Nicholas")
+  expect_equal(segment$OrderingProvider$middleInitialOrName, "")
+  expect_equal(segment$OrderingProvider$suffix, "")
+  expect_equal(segment$OrderingProvider$prefix, "")
+  expect_equal(segment$OrderingProvider$degree, "")
+  expect_equal(segment$OrderingProvider$sourceTable, "")
+  expect_equal(segment$OrderingProvider$assigningAuthority, "NPI")
+  expect_equal(segment$OrderingProvider$nameTypeCode, "L")
+  expect_equal(segment$OrderingProvider$identifierCheckDigit, "")
+  expect_equal(segment$OrderingProvider$codeIdentifyingTheCheckDigitSchemeEmployed, "")
+  expect_equal(segment$OrderingProvider$identifierTypeCode, "NPI")
+
+})
+
+test_that("OBR parsing is correct", {
+
+  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_list <- parse_hl7_message(hl7_file)
+
+  segment <- hl7_list$OBR
+
+  #create_test_text(segment) %>% clipr::write_clip()
+
+  # tests
+  expect_equal(segment$SetID, "1")
+  expect_equal(segment$PlacerOrderNumber[[1]], "ORD448811")
+  expect_equal(segment$PlacerOrderNumber[[2]], "NIST EHR")
+  expect_equal(segment$FillerOrderNumber[[1]], "R-511")
+  expect_equal(segment$FillerOrderNumber[[2]], "NIST Lab Filler")
+  expect_equal(segment$UniversalServiceID$identifier, "1000")
+  expect_equal(segment$UniversalServiceID$text, "Hepatitis A B C Panel")
+  expect_equal(segment$UniversalServiceID$nameOfCodingSystem, "99USL")
+  expect_equal(segment$PriorityOBR, "")
+  expect_equal(segment$RequestedDatetime, "")
+  expect_equal(segment$ObservationDateTime, "20120628070100")
+  expect_equal(segment$ObservationEndDateTime, "")
+  expect_equal(segment$CollectionVolume, "")
+  expect_equal(segment$CollectorIdentifier, "")
+  expect_equal(segment$SpecimenActionCode, "")
+  expect_equal(segment$DangerCode, "")
+  expect_equal(segment$RelevantClinicalInfo, "")
+  expect_equal(segment$SpecimenReceivedDateTime, "")
+  expect_equal(segment$SpecimenSource, "")
+  expect_equal(segment$OrderingProvider$idNumber, "5742200012")
+  expect_equal(segment$OrderingProvider$familyNameAndLastNamePrefix, "Radon")
+  expect_equal(segment$OrderingProvider$givenName, "Nicholas")
+  expect_equal(segment$OrderingProvider$middleInitialOrName, "")
+  expect_equal(segment$OrderingProvider$suffix, "")
+  expect_equal(segment$OrderingProvider$prefix, "")
+  expect_equal(segment$OrderingProvider$degree, "")
+  expect_equal(segment$OrderingProvider$sourceTable, "")
+  expect_equal(segment$OrderingProvider$assigningAuthority, "NPI")
+  expect_equal(segment$OrderingProvider$nameTypeCode, "L")
+  expect_equal(segment$OrderingProvider$identifierCheckDigit, "")
+  expect_equal(segment$OrderingProvider$codeIdentifyingTheCheckDigitSchemeEmployed, "")
+  expect_equal(segment$OrderingProvider$identifierTypeCode, "NPI")
+
+})

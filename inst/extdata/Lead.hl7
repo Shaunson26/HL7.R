@@ -1,0 +1,6 @@
+MSH|^~\&||MediLabCo-Seattle^45D0470381^CLIA|WADOH|WA|200112171830||ORU^R01|200112170897|P|2.3.1
+PID|||10543^^^^^Columbia Valley Memorial Hospital&01D0355944&CLIA~95101100001^^^^^MediLabCo-Seattle&45D0470381&CLIA||Doe^Jared^Q^Jr|Clemmons|19900602|M||W||2166WellsDr^AptB^Seattle^WA^98109||^^^^^206^6793240|||M|||423523049|||N
+NK1|1|Doe^Jane^Lee^^^^L|MTH^Mother^HL70063|2166 Wells Dr^Apt B^Seattle^WA^98109^USA^M^^King^^A|^PRN^PH^^^206^6793240|
+ORC|||||||||||||||||||||MediLabCo - Northwest Pathology Ltd., Central Campus^^45D0470381^^^CLIA|2217 Rainier Way^^Renton^WA^98002^USA^M^^Black Hawk^A|^WPN^PH^helpline@medilab.com^^206^5549097|115 Pike Plaza^Suite 2100^Seattle^WA ^98122^USA^^^^A|
+OBR|1||CHEM9700122|^^^3456543^Blood lead test^L|||200111270930||||||||BLDC^Blood capillary|^Welby^M^J^Jr^Dr^MD|^WPN^PH^^^206^4884144||||||||F
+OBX||SN|10368-9^Quantitative Blood Lead^LN||^45|ug/dL|||||F|||200111300800|45D0480381

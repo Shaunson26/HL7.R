@@ -1,0 +1,15 @@
+MSH|^~\&|OMNI-Lab_11|SLEAS^1234^AUSNATA|eNotification||20220323100325+1000||ORU^R01^ORU_R01|SLEAS_20220323.28489|P|2.4^AUS&Australia&ISO3166|616656856||||AU^Australia^ISO3166||EN^English^ISO639-1||
+PID|1||T-20926186^^^SLEAS^MR||Fred^Flinstone^^^||198606010000|M||^|302 COBBLESTONE WAY^^BEDROCK^NSW^2000^^C|||||||||||||N||||||N
+PV1|1|U|L.ICPM^^^^^^^^L.ICPMR||||||12345678L^PROFESSIONAL^HEALTH^^^DR^^^AUSHICPR^^^^^|||||||||
+ORC|RE||22R2347635O^SLEAS^1234||CM|||||||12345678L^PROFESSIONAL^HEALTH^^^DR^^^AUSHICPR^^^^^||||||||||||
+OBR|1||22R2347635O^SLEAS^1234|M6810^RG-M681-NRL1^L||20220315+1000|202203151912+1000|||||||202203211410+1000|OT&Other^^^NRL&NRL 1|12345678L^PROFESSIONAL^HEALTH^^^DR^^^AUSHICPR^^^^^||||||202203231003+1000||MB|F||^^^20220315+1000^^R|4869401H^LEWIS^DAVID ARTHUR^^^^^^AUSHICPR^^^^^||||6820&RAMOS& JANELLE
+OBX|1|ST|M6706^Site^NATA1234|1|Penile||||||F||0|202203151912+1000|JOHNWICK
+OBX|2|CE|M0653^Appearance^NATA1234|2|P^Plate received.^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|3|CE|564-5^CC XXX VC^LN^M6203^Quantity 1^NATA1234|3|G^Growth of...^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|4|CE|M6205^Organism 1^NATA1234|4|NGON^Neisseria gonorrhoeae^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|5|CE|M6205^Organism 1^NATA1234|5|NGON^Neisseria gonorrhoeae^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|6|CE|M20208^Penicillin Etest MIC^NATA1234|6|0.25^0.25 mg/L^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|7|CE|18906-8^Ciprofloxacin Susc Islt^LN^M20007^Ciprofloxacin^NATA1234|7|S^Susceptible^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|8|CE|18895-3^Ceftriaxone Susc Islt^LN^M20062^Ceftriaxone^NATA1234|8|S^Susceptible^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|9|CE|18866-4^Azithromycin Susc Islt^LN^M20032^Azithromycin^NATA1234|9|S^Susceptible^L||||||F||0|202203151912+1000|JOHNWICK
+OBX|10|FT|8251-1^Service Cmnt XXX-Imp^LN||This isolate has a penicillin MIC value within the range 0.125 ? 1.0 mg/L, categorised by CLSI as Intermediate.\.br\The intermediate category includes isolates with MIC values that approach usually attainable blood and tissue levels and/or for which response rates may be lower than for susceptible isolates (CLSI M100- Ed32, 2022).\.br\\.br\Antimicrobial susceptibility results determined using the bioMerieux Etest? MIC strips and Clinical and Laboratory Standards Institute (CLSI) methods and interpretative criteria. (M100-Ed32: http://em100.edaptivedocs.net/dashboard.aspx)\.br\Consult the Australian Sexual Health Alliance (ASHA) STI Management Guidelines for treatment recommendations.\.br\(ASHA: http://www.sti.guidelines.org.au/sexually-transmissible-infections/gonorrhoea)\.br\This is a notifiable disease. The relevant local Public Health Authority has been notified.||||||F||0|202203151912+1000|JOHNWICK

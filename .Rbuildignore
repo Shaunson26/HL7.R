@@ -1,0 +1,12 @@
+^HL7\.231\.R\.Rproj$
+^HL7\.NCIMS\.R\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+test-data
+test-scripts
+^LICENSE\.md$
+^to-do.txt
+^R\x_*
+build-load-distribute.R
+^doc$
+^Meta$

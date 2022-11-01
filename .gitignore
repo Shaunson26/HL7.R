@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+test-data/
+test-scripts/
+inst/doc
+doc
+Meta

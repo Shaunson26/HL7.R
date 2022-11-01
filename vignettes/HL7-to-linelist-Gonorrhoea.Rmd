@@ -1,0 +1,403 @@
+---
+title: "HL7-to-linelist-Gonorrhoea"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{HL7-to-linelist-Gonorrhoea}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+options(width = 300)
+```
+
+This vignette provides an example HL7 to linelist example.
+
+```{r setup}
+library(HL7.NCIMS.R)
+```
+
+## The task
+
+Antibiotic resistance results needed extraction from HL7 messages. There were multiple 
+results within each message. The goal was to create a table with 1 row per result 
+along with personal and sample identifiers.
+
+## The data
+
+There are 2 Gonorrhoea HL7 files containing antibiotic resistance results within this package.
+
+```{r}
+gonorrhoea_files <-
+  system.file('extdata', package = 'HL7.NCIMS.R') %>% 
+  list.files(pattern = 'gonorrhoea', full.names = TRUE)
+
+gonorrhoea_files
+```
+
+## Parsing
+
+The messages were parsed using `HL7.NCIMS.R`.
+
+```{r}
+gonorrhoea_parsed_list <-
+  lapply(gonorrhoea_files, parse_hl7_message)
+
+# 2 elements (files), with 15 elements (segments) each
+length(gonorrhoea_parsed_list)
+sapply(gonorrhoea_parsed_list, length)
+```
+
+## Data-wrangling
+
+This section explains several steps that were later combined into a single wrangle function.
+Thus, we begin with a single parsed HL7.
+
+```{r}
+msg <- gonorrhoea_parsed_list[[1]]
+```
+
+### Extraction function
+
+We expect the possibility of completely missing fields from parsing. For sake of 
+example, let us pretend there could be a 5th element in `PatientName`. Selection
+of this element when missing produces an error
+
+```{r, error=TRUE}
+msg$PID$PatientName[[5]]
+```
+
+What we want is for it to return a 'blank' value. The function `purrr::pluck`
+allows for a default value when a list element is not found
+
+```{r}
+purrr::pluck(msg$PID$PatientName, 5)
+purrr::pluck(msg$PID$PatientName, 5, .default = "")
+```
+
+or we can roll our own
+
+```{r}
+my_pluck <- function(x, .default = ''){
+  tryCatch(x, error = function(e) '')
+}
+
+my_pluck(msg$PID$PatientName[[5]])
+# and correct otherwise
+my_pluck(msg$PID$PatientName[[2]])
+```
+
+regardless, to save on typing, we create an alias function.
+
+```{r}
+# p = purrr::pluck with .default = ''
+p <- function(x, ...){ 
+  purrr::pluck(x, ..., .default = '') 
+}
+```
+
+### Personal identifiers
+
+Personal identifiers occur only once in the message. We can safely extract them
+into a `pid` data.frame object. Note the use of `with()` to further save on typing.
+
+```{r}
+pid <-
+  with(msg$PID, {
+    data.frame(
+      first_name	= p(PatientName, 2),
+      middle_name = p(PatientName, 3),
+      last_name = p(PatientName, 1),
+      street_address = p(PatientAddress, 1),
+      suburb = p(PatientAddress, 3),
+      state = p(PatientAddress, 4),
+      postcode = p(PatientAddress, 5),
+      dob = DateTimeOfBirth,
+      gender = Sex)
+  })
+
+pid
+```
+
+### Sample number and date
+
+Simple extraction from the observation request segment `OBR`.
+
+```{r}
+obr <-
+  with(msg$OBR, {
+    data.frame(specimen_number = p(FillerOrderNumber, 1),
+               specimen_date = p(RequestedDatetime, 1)
+    )
+  })
+
+obr
+```
+
+### Results data
+
+The part is complex. The data is held among multiple `OBX` segments. We need to go
+through them and extract certain parts, as well as conditionally output values depending
+on what we find.
+
+```{r}
+obxs <- grep('OBX', names(msg))
+
+obxs # indexes of OBX in message
+```
+
+#### Sample site
+
+Extract the sample site from the following OBX segment:
+
+`OBX|1|ST|M6706^Site^NATA1234|1|Urethra||||||F||0|202203171808+1000|JOHNWICK`  
+
+We expect the segment to have a `x$ValueType == 'ST' & x$ObservationIdentifier[[2]] == 'Site'`.
+If this is found extract `p(x$ObservationValue, 1)` (with `x` being the selected segment)
+otherwise output `""`. Note I've used element names, but positions also work:
+`x[[2]] == 'ST' & x[[3]][[2]] == 'Site'`, and `x[[5]][[1]]`.
+
+
+```{r}
+obxs_st_site <-
+  sapply(msg[obxs], function(x){
+    x$ValueType == 'ST' & x$ObservationIdentifier[[2]] == 'Site'
+  })
+
+if (any(obxs_st_site)) {
+  msg_site_ind <- obxs[obxs_st_site]
+  obx_site <- data.frame(site = p(msg[[msg_site_ind]]$ObservationValue, 1))
+} else {
+  obx_site <- data.frame(site = NA_character_)
+}
+
+obx_site
+```
+
+#### Antibiotic resistance results
+
+Again, we look for results and act upon them if found, from
+
+`OBX|7|CE|18906-8^Ciprofloxacin Susc Islt^LN^M20007^Ciprofloxacin^NATA1234|7|S^Susceptible^L|...`
+`OBX|8|CE|18895-3^Ceftriaxone Susc Islt^LN^M20062^Ceftriaxone^NATA1234|8|S^Susceptible^L|...`
+
+The step returns `NULL` for segments without any hits, so we remove them.
+
+```{r}
+antibiotics_OR_grep <- "Penicillin|Ciprofloxacin|Ceftriaxone|Azithromycin"
+
+obx_tmp <-
+  lapply(msg[obxs], function(x){
+    
+    # TODO could examine code in position 1
+    # TODO could match values rather than string manipulation
+    obx_id <- p(x$ObservationIdentifier, 2)
+    
+    if (grepl(pattern = antibiotics_OR_grep, x = obx_id, ignore.case = TRUE) ){
+      
+      if (grepl(' Susc ', obx_id)) {
+        
+        data.frame(antibiotic = sub(' .*', '', obx_id),
+                   type = 'susceptibility',
+                   value = p(x$ObservationValue, 1))
+        
+      } else if (grepl('MIC', obx_id)) {
+        
+        data.frame(antibiotic = sub(' .*', '', obx_id),
+                   type = 'mic',
+                   value = p(x$ObservationValue, 1))
+      }
+      
+    }
+  })
+
+is.not.null <- function(x) { !is.null(x) }
+
+obx_not_nulls <- sapply(obx_tmp, is.not.null)
+
+obx_tmp[obx_not_nulls]
+```
+
+And further wrangle the results - row bind, complete results for 2 test types, and 
+do some conversions. Some tests had categorical outputs (susceptibility categories), while others
+we numerical (MIC) and needed conversion.
+
+```{r}
+categorise_etest_mic <- function(x){
+  x <- sub('<', '', x)
+  x <- as.numeric(x)
+  dplyr::case_when(
+    x < 0.002 ~ 'Susceptible',
+    x < 0.05 ~ 'Less Susceptible',
+    TRUE ~ 'Resistant'
+  )
+}
+
+if (any(obx_not_nulls)){
+  obx_result <-
+    obx_tmp[obx_not_nulls] %>%
+    do.call(dplyr::bind_rows, .) %>%
+    tidyr::complete(type = c('susceptibility', 'mic')) %>%
+    tidyr::pivot_wider(names_from = 'type', values_from = 'value') %>%
+    dplyr::mutate(susceptibility = ifelse(test = is.na(susceptibility) & !is.na(mic),
+                                          yes = categorise_etest_mic(mic),
+                                          no = susceptibility))
+} else {
+  obx_result <- data.frame(antibiotic = NA, susceptibility = NA, mic = NA)
+}
+
+obx_result
+```
+
+### Completing the linelist
+
+```{r}
+msh <- data.frame(lab = p(msg$MSH$SendingFacility, 1))
+
+cbind.data.frame(file = attr(msg, 'filename'), pid, obr, obx_site, obx_result, msh)
+```
+
+```{r, echo = F}
+rm(
+  pid,
+  obr,
+  obx_site,
+  obx_result,
+  msh,
+  obx_tmp,
+  msg,
+  is.not.null,
+  obxs_st_site,
+  obxs,
+  obx_not_nulls,
+  msg_site_ind,
+  antibiotics_OR_grep,
+  p
+)
+```
+
+### As a complete function
+
+Being happy with the code above, they were combined into a single function.
+
+```{r}
+extract_pid_and_antibiotic_data <- function(msg, antibiotics = c('Penicillin', 'Ciprofloxacin', 'Ceftriaxone', 'Azithromycin')){
+  
+  antibiotics_OR_grep <- paste0(antibiotics, collapse = "|")
+  
+  p <- function(x,...){  purrr::pluck(x,...,.default = '') }
+  
+  pid <-
+    with(msg$PID, {
+      data.frame(
+        first_name	= p(PatientName, 2),
+        middle_name = p(PatientName, 3),
+        last_name = p(PatientName, 1),
+        street_address = p(PatientAddress, 1),
+        suburb = p(PatientAddress, 3),
+        state = p(PatientAddress, 4),
+        postcode = p(PatientAddress, 5),
+        dob = DateTimeOfBirth,
+        gender = Sex)
+    })
+  
+  obr <-
+    with(msg$OBR, {
+      data.frame(specimen_number = p(FillerOrderNumber, 1),
+                 specimen_date = p(RequestedDatetime, 1)
+      )
+    })
+  
+  obxs <- grep('OBX', names(msg))
+  
+  obxs_st_site <-
+    sapply(msg[obxs], function(x){
+      x$ValueType == 'ST' & x$ObservationIdentifier[[2]] == 'Site'
+    })
+  
+  if (any(obxs_st_site)) {
+    msg_site_ind <- obxs[obxs_st_site]
+    obx_site <- data.frame(site = p(msg[[msg_site_ind]]$ObservationValue, 1))
+  } else {
+    obx_site <- data.frame(site = NA_character_)
+  }
+  
+  # malformed HL7?
+  if (is.na(obx_site$site)){
+    obxs_st_site <-
+      sapply(msg[obxs], function(x){
+        x$ObservationIdentifier[[2]] == 'Site'
+      })
+    if (any(obxs_st_site)) {
+      msg_site_ind <- obxs[obxs_st_site]
+      warning('This message did not have ValueType = ST but the site ',
+              p(msg[[msg_site_ind]]$ObservationValue, 1), ' was found.')
+    }
+  }
+  
+  obx_tmp <-
+    lapply(msg[obxs], function(x){
+      
+      # TODO could examine code in position 1
+      # TODO could match values rather than string manipulation
+      obx_id <- p(x$ObservationIdentifier, 2)
+      
+      if (grepl(pattern = antibiotics_OR_grep, x = obx_id, ignore.case = TRUE) ){
+        
+        if (grepl(' Susc ', obx_id)) {
+          
+          data.frame(antibiotic = sub(' .*', '', obx_id),
+                     type = 'susceptibility',
+                     value = p(x$ObservationValue, 1))
+          
+        } else if (grepl('MIC', obx_id)) {
+          
+          data.frame(antibiotic = sub(' .*', '', obx_id),
+                     type = 'mic',
+                     value = p(x$ObservationValue, 1))
+        }
+        
+      }
+    })
+  
+  
+  is.not.null <- function(x) { !is.null(x) }
+  
+  obx_not_nulls <- sapply(obx_tmp, is.not.null)
+  
+  if (any(obx_not_nulls)){
+    obx_result <-
+      obx_tmp[obx_not_nulls] %>%
+      do.call(dplyr::bind_rows, .) %>%
+      tidyr::complete(type = c('susceptibility', 'mic')) %>%
+      tidyr::pivot_wider(names_from = 'type', values_from = 'value') %>%
+      dplyr::mutate(susceptibility = ifelse(test = is.na(susceptibility) & !is.na(mic),
+                                            yes = categorise_etest_mic(mic),
+                                            no = susceptibility))
+  } else {
+    obx_result <- data.frame(antibiotic = NA, susceptibility = NA, mic = NA)
+  }
+  
+  msh <- data.frame(lab = p(msg$MSH$SendingFacility, 1))
+  #msh = data.frame(lab = 'LAB_33', test = '698-1')
+  
+  cbind.data.frame(file = attr(msg, 'filename'), pid, obr, obx_site, obx_result, msh)
+  
+}
+
+```
+
+### Running the function
+
+```{r}
+gonorrhoea_parsed_list %>% 
+  lapply(extract_pid_and_antibiotic_data) %>% 
+  do.call(dplyr::bind_rows, .)
+```

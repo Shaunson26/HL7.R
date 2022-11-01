@@ -1,0 +1,22 @@
+MSH|^~\&|OMNI-Lab_11|MEOW^2206^AUSNATA|eNotification||20210201131422+1000||ORU^R01^ORU_R01|MEOW_20220401.54905|P|2.4^AUS&Australia&ISO3166|620115368||||AU^Australia^ISO3166||EN^English^ISO639-1||
+PID|1||6209683.RAN^^^MEOW^MR||Blippi^John^^^MR||198809030000|M||4^Neither Aboriginal/Torres St|789 Ten Street^^Burry Hills^NSW^2010^Australia^C||0123456789^PRN^PH^^^^0123456789|||||||||||N||||||N
+PV1|1|U|2.ASC^^^^^^^^2.SOME STREET CLINIC||||||123456Y^BIM^BOM BAM^^^PROF^^^AUSHICPR^^^^^|||||||||
+ORC|RE||22R197544P^MEOW^2206||CM|||||||123456Y^BIM^BOM BAM^^^PROF^^^AUSHICPR^^^^^||||||||||||
+OBR|1||22R197544P^MEOW^2206|M5010^RG-M501-STD1^L||20220328+1000|202102281528+1000|||||||202102281528+1000|SW&Swab^^rectum^STD&STD screening|123456Y^BIM^BOM BAM^^^PROF^^^AUSHICPR^^^^^||||||202204011312+1000||MB|F||^^^20220328+1000^^R|||||6321&NGUYEN& ELAINE
+OBX|1|ST|M6706^Site^NATA2206|1|Rectum||||||F||0|202102281528+1000|RANDWICK
+OBX|2|CE|M0653^Appearance^NATA2206|2|TM^Swab in transport medium^L||||||F||0|202102281528+1000|RANDWICK
+OBX|3|CE|564-5^CC XXX VC^LN^M6203^Quantity 1^NATA2206|3|3^Heavy growth of...^L||||||F||0|202102281528+1000|RANDWICK
+OBX|4|CE|M6205^Organism 1^NATA2206|4|STRDYS^Streptococcus dysgalactiae^L||||||F||0|202102281528+1000|RANDWICK
+OBX|5|CE|19090-0^CC # Ur^LN^M6206^Quantity 2^NATA2206|5|SC^Scanty growth of...^L||||||F||0|202102281528+1000|RANDWICK
+OBX|6|CE|M6207^Organism 2^NATA2206|6|NGON^Neisseria gonorrhoeae^L||||||F||0|202102281528+1000|RANDWICK
+OBX|7|CE|M6205^Organism 1^NATA2206|7|STRDYS^Streptococcus dysgalactiae^L||||||F||0|202102281528+1000|RANDWICK
+OBX|8|CE|18964-7^Penicillin Susc Islt^LN^M20018^Penicillin^NATA2206|8|S^Susceptible^L||||||F||0|202102281528+1000|RANDWICK
+OBX|9|CE|18908-4^Clindamycin Susc Islt^LN^M20028^Clindamycin/lincomycin^NATA2206|9|R^Resistant^L||||||F||0|202102281528+1000|RANDWICK
+OBX|10|CE|M20146^Amoxycillin^NATA2206|10|S^Susceptible^L||||||F||0|202102281528+1000|RANDWICK
+OBX|11|CE|18878-9^Cefazolin Susc Islt^LN^M20017^Cephazolin^NATA2206|11|S^Susceptible^L||||||F||0|202102281528+1000|RANDWICK
+OBX|12|CE|M6207^Organism 2^NATA2206|12|NGON^Neisseria gonorrhoeae^L||||||F||0|202102281528+1000|RANDWICK
+OBX|13|CE|M20208^Penicillin Etest MIC^NATA2206|13|1^1 mg/L^L||||||F||0|202102281528+1000|RANDWICK
+OBX|14|CE|18906-8^Ciprofloxacin Susc Islt^LN^M20007^Ciprofloxacin^NATA2206|14|R^Resistant^L||||||F||0|202102281528+1000|RANDWICK
+OBX|15|CE|18895-3^Ceftriaxone Susc Islt^LN^M20062^Ceftriaxone^NATA2206|15|S^Susceptible^L||||||F||0|202102281528+1000|RANDWICK
+OBX|16|CE|18866-4^Azithromycin Susc Islt^LN^M20032^Azithromycin^NATA2206|16|S^Susceptible^L||||||F||0|202102281528+1000|RANDWICK
+OBX|17|FT|8251-1^Service Cmnt XXX-Imp^LN||Streptococcus dysgalactiae and Streptococcus dysgalactiae ssp equisimilis were formerly reported as beta-haemolytic Streptococcus Group C or G.\.br\This isolate has a penicillin MIC value within the range 0.125 ? 1.0 mg/L, categorised by CLSI as Intermediate.\.br\The intermediate category includes isolates with MIC values that approach usually attainable blood and tissue levels and/or for which response rates may be lower than for susceptible isolates (CLSI M100- Ed32, 2022).\.br\Antimicrobial susceptibility results determined using the bioMerieux Etest? MIC strips and Clinical and Laboratory Standards Institute (CLSI) methods and interpretative criteria. (M100-Ed32: http://em100.edaptivedocs.net/dashboard.aspx)\.br\Consult the Australian Sexual Health Alliance (ASHA) STI Management Guidelines for treatment recommendations.\.br\(ASHA: http://www.sti.guidelines.org.au/sexually-transmissible-infections/gonorrhoea)\.br\This is a notifiable disease. The relevant local Public Health Authority has been notified.||||||F||0|202102281528+1000|RANDWICK

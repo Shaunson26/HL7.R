@@ -1,0 +1,3 @@
+firstname,lastname,street,suburb,test_id,text_text,result_code,result_text,facility
+Homer,Simpson,742 Evergreen Terrace,Springfield,ncov19,nCoV-2019 PCR,P,Postive,Dr Hibbert Medical
+Ned,Flanders,744 Evergreen Terrace,Springfield,ncov19,nCoV-2019 PCR,N,Negative,Nick Riviera Appartment

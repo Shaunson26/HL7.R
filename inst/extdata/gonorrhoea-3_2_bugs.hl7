@@ -1,0 +1,24 @@
+MSH|^~\&|OMNI-Lab_11|MEOW^2206^AUSNATA|eNotification||20210522094042+1000||ORU^R01^ORU_R01|MEOW_20220726.20328|P|2.4^AUS&Australia&ISO3166|661932344||||AU^Australia^ISO3166||EN^English^ISO639-1||
+PID|1||444163.SSH^^^MEOW^MR||ABCDE^HIJLK^^^||199011190000|M||^|^^^^2010^^C|||||||||||||N||||||N
+PV1|1|U|X.SSH^^^^^^^^X.HEALTH ||||||000070BT^BNANA^ANNA^^^DR^^^AUSHICPR^^^^^|||||||||
+ORC|RE||11Z474259Q^MEOW^2206||CM|||||||000070BT^BNANA^ANNA^^^DR^^^AUSHICPR^^^^^||||||||||||
+OBR|1||11Z474259Q^MEOW^2206|M5010^RG-M501-STD1^L||20220722+1000|202105221237+1000|||||||202207221415+1000|SW&Swab^^^STD&STD screening|000070BT^BNANA^ANNA^^^DR^^^AUSHICPR^^^^^||||||202207260938+1000||MB|F||^^^20220722+1000^^R|||||6820&RAMOS& JANELLE
+OBX|1|ST|M6706^Site^NATA2206|1|Urethral swab||||||F||0|202105221237+1000|RANDWICK
+OBX|2|CE|M0653^Appearance^NATA2206|2|TM^Swab in transport medium^L||||||F||0|202105221237+1000|RANDWICK
+OBX|3|CE|564-5^CC XXX VC^LN^M6203^Quantity 1^NATA2206|3|3^Heavy growth of...^L||||||F||0|202105221237+1000|RANDWICK
+OBX|4|CE|M6205^Organism 1^NATA2206|4|NGON^Neisseria gonorrhoeae^L||||||F||0|202105221237+1000|RANDWICK
+OBX|5|CE|19090-0^CC # Ur^LN^M6206^Quantity 2^NATA2206|5|SC^Scanty growth of...^L||||||F||0|202105221237+1000|RANDWICK
+OBX|6|CE|M6207^Organism 2^NATA2206|6|STALUG^Staphylococcus lugdunensis^L||||||F||0|202105221237+1000|RANDWICK
+OBX|7|ST|M7385^Isolate comment line 1^NATA2206|7|Organism 1: Sensitivities to follow||||||F||0|202105221237+1000|RANDWICK
+OBX|8|CE|M6205^Organism 1^NATA2206|8|NGON^Neisseria gonorrhoeae^L||||||F||0|202105221237+1000|RANDWICK
+OBX|9|CE|18964-7^Penicillin Susc Islt^LN^M20018^Penicillin^NATA2206|9|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|10|CE|18906-8^Ciprofloxacin Susc Islt^LN^M20007^Ciprofloxacin^NATA2206|10|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|11|CE|18895-3^Ceftriaxone Susc Islt^LN^M20062^Ceftriaxone^NATA2206|11|S^Susceptible^L||||||F||0|202105221237+1000|RANDWICK
+OBX|12|CE|18866-4^Azithromycin Susc Islt^LN^M20032^Azithromycin^NATA2206|12|S^Susceptible^L||||||F||0|202105221237+1000|RANDWICK
+OBX|13|CE|M6207^Organism 2^NATA2206|13|STALUG^Staphylococcus lugdunensis^L||||||F||0|202105221237+1000|RANDWICK
+OBX|14|CE|18961-3^Oxacillin Susc Islt^LN^M20001^Oxacillin^NATA2206|14|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|15|CE|18964-7^Penicillin Susc Islt^LN^M20018^Penicillin^NATA2206|15|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|16|CE|19000-9^Vancomycin Susc Islt^LN^M20022^Vancomycin^NATA2206|16|S^Susceptible^L||||||F||0|202105221237+1000|RANDWICK
+OBX|17|CE|18916-7^Dicloxacillin Susc Islt^LN^M20013^Flucloxacillin/dicloxacillin^NATA2206|17|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|18|CE|18878-9^Cefazolin Susc Islt^LN^M20017^Cephazolin^NATA2206|18|R^Resistant^L||||||F||0|202105221237+1000|RANDWICK
+OBX|19|FT|8251-1^Service Cmnt XXX-Imp^LN||S.lugdanensis is a coagulase negative staphylococcus but it can cause infections similar to those caused by S.aureus.\.br\Antimicrobial susceptibility results determined using the bioMerieux Etest® MIC strips and Clinical and Laboratory Standards Institute (CLSI) methods and interpretative criteria. (M100-Ed32: http://em100.edaptivedocs.net/dashboard.aspx)\.br\Consult the Australian Sexual Health Alliance (ASHA) STI Management Guidelines for treatment recommendations.\.br\(ASHA: http://www.sti.guidelines.org.au/sexually-transmissible-infections/gonorrhoea)\.br\This is a notifiable disease. The relevant local Public Health Authority has been notified.||||||F||0|202105221237+1000|RANDWICK

@@ -1,0 +1,8 @@
+FHS|^~\&|LABTRAK||PATH_RESULTS||
+BHS|^~\&|LABTRAK||PATH_RESULTS||
+MSH|^~\&||Dr Hibbert Medical||NSW Health||||||2.3.1
+PID||1|||Homer^Simpson||||||742 Evergreen Terrace^^Springfield
+OBX|1|CE|ncov19^nCoV-2019 PCR^LN||P^Postive
+MSH|^~\&||Nick Riviera Appartment||NSW Health||||||2.3.1
+PID||1|||Ned^Flanders||||||744 Evergreen Terrace^^Springfield
+OBX|1|CE|ncov19^nCoV-2019 PCR^LN||N^Negative

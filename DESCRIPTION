@@ -1,0 +1,25 @@
+Package: HL7.NCIMS.R
+Title: HL7 Wrangling For NCIMS In R
+Version: 2022.06.14
+Authors@R: 
+    c(
+    person("Shaun", "Nielsen", , "shaun.nielsen@health.nsw.gov.au", role = c("aut", "cre")),
+    person("Alasdair", "King", , "Alasdair.King@health.nsw.gov.au", role = c("ctb"))
+    )
+Description: Import and export of HL7 2.3.1/2.4 messages for NCIMS related tasks. HL7 is borad, so NCIMS related specs are covered first.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    dplyr,
+    knitr,
+    purrr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    tidyr
+Config/testthat/edition: 3
+Imports: 
+    htmltools,
+    magrittr
+VignetteBuilder: knitr

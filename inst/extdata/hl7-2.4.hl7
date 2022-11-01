@@ -1,0 +1,19 @@
+MSH|^~\&|OMNI-Lab_11|SEALS^2206^AUSNATA|eNotification||20220323125309+1000||ORU^R01^ORU_R01|SEALS_20220323.53203|P|2.4^AUS&Australia&ISO3166|616748243||||AU^Australia^ISO3166||EN^English^ISO639-1||
+PID|1||T-20922378^^^SEALS^MR||John^Smith^^^||198001010000|M||^||||||||||||||N||||||N
+PV1|1|U|X.DARWRH^^^^^^^^X.ROYAL DARWIN HOSPITAL||||||1111111^AAAAA^BBBBBB^^^DR^^^AUSHICPR^^^^^|||||||||
+ORC|RE||22R147728O^SEALS^2206||CM|||||||1111111^AAAAA^BBBBBB^^^DR^^^AUSHICPR^^^^^||||||||||||
+OBR|1||22R147728O^SEALS^2206|M6810^RG-M681-NRL1^L||20211230+1000|202112301400+1000|||||||202203041941+1000|OT&Other^^^NRL&NRL 1|1111111^AAAAA^BBBBBB^^^DR^^^AUSHICPR^^^^^||||||202203231253+1000||MB|C||^^^20211230+1000^^R|||||LIMNIOSE&LIMNIOS& EDNA ATHENA
+OBX|1|ST|M6706^Site^NATA2206|1|Penile||||||F||0|202112301400+1000|RANDWICK
+OBX|2|ST|M0653^Appearance^NATA2206|2|Cryovial culture||||||F||0|202112301400+1000|RANDWICK
+OBX|3|CE|564-5^CC XXX VC^LN^M6203^Quantity 1^NATA2206|3|G^Growth of...^L||||||F||0|202112301400+1000|RANDWICK
+OBX|4|CE|M6205^Organism 1^NATA2206|4|NGON^Neisseria gonorrhoeae^L||||||F||0|202112301400+1000|RANDWICK
+OBX|5|CE|M6205^Organism 1^NATA2206|5|NGON^Neisseria gonorrhoeae^L||||||C||0|202112301400+1000|RANDWICK
+OBX|6|CE|18964-7^Penicillin Susc Islt^LN^M20018^Penicillin^NATA2206|6|LS^Less Susceptible^L||||||C||0|202112301400+1000|RANDWICK
+OBX|7|CE|M20208^Penicillin Etest MIC^NATA2206|7|0.064^0.064 mg/L^L||||||C||0|202112301400+1000|RANDWICK
+OBX|8|CE|18906-8^Ciprofloxacin Susc Islt^LN^M20007^Ciprofloxacin^NATA2206|8|S^Susceptible^L||||||C||0|202112301400+1000|RANDWICK
+OBX|9|ST|M20212^Ciprofloxacin Etest MIC^NATA2206|9|0.002 mg/L||||||C||0|202112301400+1000|RANDWICK
+OBX|10|CE|18895-3^Ceftriaxone Susc Islt^LN^M20062^Ceftriaxone^NATA2206|10|S^Susceptible^L||||||C||0|202112301400+1000|RANDWICK
+OBX|11|ST|M20221^Ceftriaxone Etest MIC^NATA2206|11|<0.002mg/L||||||C||0|202112301400+1000|RANDWICK
+OBX|12|CE|18866-4^Azithromycin Susc Islt^LN^M20032^Azithromycin^NATA2206|12|S^Susceptible^L||||||C||0|202112301400+1000|RANDWICK
+OBX|13|CE|M20179^Azithromycin Etest MIC ^NATA2206|13|0.032^0.032 mg/L^L||||||C||0|202112301400+1000|RANDWICK
+OBX|14|FT|8251-1^Service Cmnt XXX-Imp^LN||Results determined using the bioMerieux Etest method and the Australian Gonococcal Surveillance Programme interpretative criteria. http://cdstest.net\.br\Consult the Australian Sexual Health Alliance Management Guidelines for treatment recommendations.\.br\http://www.sti.guidelines.org.au/sexually-transmissible-infections/gonorrhoea\.br\\.br\This is a notifiable disease. The relevant local Public Health Authority has been notified.||||||C||0|202112301400+1000|RANDWICK
