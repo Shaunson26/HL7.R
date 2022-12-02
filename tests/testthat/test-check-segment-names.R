@@ -1,6 +1,6 @@
 test_that("segment names parse correctly", {
 
-  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/Hepatitis-A-Virus.hl7')
+  hl7_file <- system.file(package = 'HL7.R', 'extdata/Hepatitis-A-Virus.hl7')
 
   hl7_list <- parse_hl7_message(hl7_file)
 
