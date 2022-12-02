@@ -43,6 +43,11 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          
+      - name: Install Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '2.17.1' # The pandoc version to download (if necessary) and use.
 
       - name: R CMD check
         if: always()
