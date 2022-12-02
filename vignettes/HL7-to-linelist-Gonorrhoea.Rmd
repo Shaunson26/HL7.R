@@ -21,7 +21,7 @@ options(width = 300)
 This vignette provides an example HL7 to linelist example.
 
 ```{r setup}
-library(HL7.NCIMS.R)
+library(HL7.R)
 ```
 
 ## The task
@@ -36,7 +36,7 @@ There are 2 Gonorrhoea HL7 files containing antibiotic resistance results within
 
 ```{r}
 gonorrhoea_files <-
-  system.file('extdata', package = 'HL7.NCIMS.R') %>% 
+  system.file('extdata', package = 'HL7.R') %>% 
   list.files(pattern = 'gonorrhoea', full.names = TRUE)
 
 gonorrhoea_files
@@ -44,7 +44,7 @@ gonorrhoea_files
 
 ## Parsing
 
-The messages were parsed using `HL7.NCIMS.R`.
+The messages were parsed using `HL7.R`.
 
 ```{r}
 gonorrhoea_parsed_list <-
@@ -61,7 +61,7 @@ This section explains several steps that were later combined into a single wrang
 Thus, we begin with a single parsed HL7.
 
 ```{r}
-msg <- gonorrhoea_parsed_list[[1]]
+msg <- gonorrhoea_parsed_list[[4]]
 ```
 
 ### Extraction function
@@ -244,6 +244,8 @@ if (any(obx_not_nulls)){
   obx_result <-
     obx_tmp[obx_not_nulls] %>%
     do.call(dplyr::bind_rows, .) %>%
+    # TODO - capture multiple strain information (was done, likely not PR'd before leaving)
+    dplyr::distinct(antibiotic, type, value) %>% 
     tidyr::complete(type = c('susceptibility', 'mic')) %>%
     tidyr::pivot_wider(names_from = 'type', values_from = 'value') %>%
     dplyr::mutate(susceptibility = ifelse(test = is.na(susceptibility) & !is.na(mic),
@@ -376,6 +378,8 @@ extract_pid_and_antibiotic_data <- function(msg, antibiotics = c('Penicillin', '
     obx_result <-
       obx_tmp[obx_not_nulls] %>%
       do.call(dplyr::bind_rows, .) %>%
+      # TODO - capture multiple strain information (was done, likely not PR'd before leaving)
+      dplyr::distinct(antibiotic, type, value) %>% 
       tidyr::complete(type = c('susceptibility', 'mic')) %>%
       tidyr::pivot_wider(names_from = 'type', values_from = 'value') %>%
       dplyr::mutate(susceptibility = ifelse(test = is.na(susceptibility) & !is.na(mic),

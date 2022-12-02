@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(HL7.NCIMS.R)
+library(HL7.R)
 ```
 
 Information on HL7 specifications were sourced from:  
@@ -44,7 +44,7 @@ message are numbered in the output list e.g. OBX.1 OBX.2 (using the Set ID value
 Use `parse_hl7_message()` on a file path.
 
 ```{r}
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/hl7-2.3.1.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/hl7-2.3.1.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 
@@ -86,7 +86,7 @@ with(hl7_list,
 result is a list of parsed messages.
 
 ```{r}
-hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-batch.hl7')
+hl7_file <- system.file(package = 'HL7.R', 'extdata/fake-covid-batch.hl7')
 
 hl7_list <- parse_hl7_message(hl7_file)
 
@@ -109,7 +109,7 @@ Cycle through each file and use `parse_hl7_message()`
 ```{r}
 # Two HL7 files starting with 'fake' are distributed with this package, 
 hl7_files <- 
-  system.file(package = 'HL7.NCIMS.R', 'extdata') %>% 
+  system.file(package = 'HL7.R', 'extdata') %>% 
   list.files(pattern = 'fake-covid-\\d.hl7$', full.names = T)
 
 basename(hl7_files)
@@ -225,7 +225,7 @@ readr::write_csv(some_line_list, file = 'inst/extdata/fake-covid-n2.csv')
 
 ```{r}
 # A 2 row line list with fake data is distributed with this package
-some_line_list <- read.csv(system.file(package = 'HL7.NCIMS.R', 'extdata/fake-covid-n2.csv'))
+some_line_list <- read.csv(system.file(package = 'HL7.R', 'extdata/fake-covid-n2.csv'))
 some_line_list
 ```
 

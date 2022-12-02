@@ -150,12 +150,12 @@ functions for particular fields: SendingFacilityComponents, MessageTypeComponent
 }
 \section{Functions}{
 \itemize{
-\item \code{EncodingCharactersComponents}: create a character vector of length 1 with input values separated with a ^
+\item \code{EncodingCharactersComponents()}: create a character vector of length 1 with input values separated with a ^
 
-\item \code{SendingFacilityComponents}: create a character vector of length 1 with input values separated with a ^
+\item \code{SendingFacilityComponents()}: create a character vector of length 1 with input values separated with a ^
 
-\item \code{MessageTypeComponents}: create a character vector of length 1 with input values separated with a ^
+\item \code{MessageTypeComponents()}: create a character vector of length 1 with input values separated with a ^
 
-\item \code{VersionIDComponents}: create a character vector of length 1 with input values separated with a ^
+\item \code{VersionIDComponents()}: create a character vector of length 1 with input values separated with a ^
+
 }}
-
