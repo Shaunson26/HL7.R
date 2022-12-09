@@ -40,6 +40,6 @@ Described further at: http://www.hl7.eu/HL7v2x/v231/hl7v231typCE.htm
 
 \item \code{segment_names}: The actual list of segment (MSH, PID, etc) and sub-field names (MessageType,
 PatientIdentifierList, etc), that calls upon other lists described here.
-}}
 
+}}
 \keyword{datasets}

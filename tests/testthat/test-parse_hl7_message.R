@@ -1,6 +1,6 @@
 test_that("MSH parsing is correct", {
 
-  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_file <- system.file(package = 'HL7.R', 'extdata/confluence-example.hl7')
   hl7_list <- parse_hl7_message(hl7_file)
 
   segment <- hl7_list$MSH
@@ -36,7 +36,7 @@ test_that("MSH parsing is correct", {
 
 test_that("PID parsing is correct", {
 
-  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_file <- system.file(package = 'HL7.R', 'extdata/confluence-example.hl7')
   hl7_list <- parse_hl7_message(hl7_file)
 
   segment <- hl7_list$PID
@@ -97,7 +97,7 @@ test_that("PID parsing is correct", {
 
 test_that("ORC parsing is correct", {
 
-  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_file <- system.file(package = 'HL7.R', 'extdata/confluence-example.hl7')
   hl7_list <- parse_hl7_message(hl7_file)
 
   segment <- hl7_list$ORC
@@ -136,7 +136,7 @@ test_that("ORC parsing is correct", {
 
 test_that("OBR parsing is correct", {
 
-  hl7_file <- system.file(package = 'HL7.NCIMS.R', 'extdata/confluence-example.hl7')
+  hl7_file <- system.file(package = 'HL7.R', 'extdata/confluence-example.hl7')
   hl7_list <- parse_hl7_message(hl7_file)
 
   segment <- hl7_list$OBR

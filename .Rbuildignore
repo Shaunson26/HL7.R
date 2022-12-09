@@ -1,5 +1,4 @@
-^HL7\.231\.R\.Rproj$
-^HL7\.NCIMS\.R\.Rproj$
+^HL7\.R\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 test-data
@@ -10,3 +9,4 @@ test-scripts
 build-load-distribute.R
 ^doc$
 ^Meta$
+^.github
