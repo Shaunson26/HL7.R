@@ -4,6 +4,10 @@
 # HL7.R
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Shaunson26/HL7.R/actions/workflows/r-cmd-check.yml/badge.svg)](https://github.com/Shaunson26/HL7.R/actions/workflows/r-cmd-check.yml)
+![GitHub R package
+version](https://img.shields.io/github/r-package/v/shaunson26/HL7.R)
 <!-- badges: end -->
 
 The goal of HL7.R is to enable wrangling of HL7 2.3.1/2.4 in R. This
@@ -292,7 +296,7 @@ Conversion of Date and Datetimes
 
 ``` r
 datetime_to_hl7_datetime(Sys.time())
-#> [1] "20221101111235"
+#> [1] "20221212105930"
 ```
 
 `.trim` will trim trailing blank fields. It is `TRUE` by default
