@@ -1,10 +1,10 @@
 Package: HL7.R
 Title: HL7 Wrangling In R
-Version: 2022.12.02
+Version: 2023.01.10
 Authors@R: 
     c(
     person("Shaun", "Nielsen", , "shaun.nielsen@health.nsw.gov.au", role = c("aut", "cre")),
-    person("Alasdair", "King", , "Alasdair.King@health.nsw.gov.au", role = c("ctb"))
+    person("Alasdair", "King", , "Alasdair.King@health.nsw.gov.au", role = c("aut", "ctb"))
     )
 Description: Import and export of HL7 2.3.1/2.4 messages. HL7 is broad, so NCIMS (in-house system) related specs are covered first.
 License: MIT + file LICENSE
