@@ -14,3 +14,4 @@ build-load-distribute.R
 ^docs$
 ^pkgdown$
 ^\.github$
+man/figures/hexsticker.R
