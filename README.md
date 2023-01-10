@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# HL7.R
+# HL7.R <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
@@ -296,7 +296,7 @@ Conversion of Date and Datetimes
 
 ``` r
 datetime_to_hl7_datetime(Sys.time())
-#> [1] "20221212105930"
+#> [1] "20230110104020"
 ```
 
 `.trim` will trim trailing blank fields. It is `TRUE` by default

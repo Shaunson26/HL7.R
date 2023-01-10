@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 options(width = 300)
 ```
 
-# HL7.R
+# HL7.R <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Shaunson26/HL7.R/actions/workflows/r-cmd-check.yml/badge.svg)](https://github.com/Shaunson26/HL7.R/actions/workflows/r-cmd-check.yml)
