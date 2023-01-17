@@ -80,34 +80,12 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<div class="section level3">
-<h3 id="devops">Devops<a class="anchor" aria-label="anchor" href="#devops"></a>
-</h3>
-<p>Clone repo, open <code>HL7.R.Rproj</code> and use <code>devtools</code></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: usethis</span></span>
-<span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ Loading HL7.R</span></span>
-<span><span class="co">#&gt; HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="from-archive">From archive<a class="anchor" aria-label="anchor" href="#from-archive"></a>
-</h3>
-<p>Someone built the package and has given you the file - be aware if they built using source or binary. Generally, <code>tar.gz</code> = source, <code>zip</code> = binary</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R.xxx.tar.gz'</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">'source'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R.xxx.zip'</span>, repos <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="from-drat">From DRAT<a class="anchor" aria-label="anchor" href="#from-drat"></a>
-</h3>
-<p>A local package repo may exist. Again, be aware if they built using source or binary. Look for <code>./bin</code> and <code>./src</code> in the DRAT folder.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/eddelbuettel/drat" class="external-link">drat</a></span><span class="op">)</span></span>
-<span><span class="fu">drat</span><span class="fu">::</span><span class="fu">addRepo</span><span class="op">(</span><span class="st">"workgroup"</span>, <span class="st">'file:drive:/path/to/drat'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">repos</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="co"># assuming binary</span></span></code></pre></div>
-</div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Shaunson26/HL7.R"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: usethis</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Loading HL7.R</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="parsing-a-hl7">Parsing a HL7<a class="anchor" aria-label="anchor" href="#parsing-a-hl7"></a>
@@ -122,7 +100,7 @@
 <h3 id="single-hl7-message">Single HL7 message<a class="anchor" aria-label="anchor" href="#single-hl7-message"></a>
 </h3>
 <p>Use <code><a href="reference/parse_hl7_message.html">parse_hl7_message()</a></code> on a file path.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hl7_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">'HL7.R'</span>, <span class="st">'extdata/hl7-2.3.1.hl7'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">hl7_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parse_hl7_message.html">parse_hl7_message</a></span><span class="op">(</span><span class="va">hl7_file</span><span class="op">)</span></span>
@@ -165,12 +143,12 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $PatientName$givenName</span></span>
 <span><span class="co">#&gt; [1] "HOMER"</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># File from where data parsed</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">hl7_list</span>, <span class="st">'filename'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "hl7-2.3.1.hl7"</span></span></code></pre></div>
 <p>Traditionally indexes are used, but using named elements can help readability.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">hl7_list</span>,</span>
 <span>     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>       first_name <span class="op">=</span> <span class="va">PID</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>,</span>
@@ -195,7 +173,7 @@
 <h3 id="batch-hl7-message">Batch HL7 message<a class="anchor" aria-label="anchor" href="#batch-hl7-message"></a>
 </h3>
 <p><code><a href="reference/parse_hl7_message.html">parse_hl7_message()</a></code> will check for batch headers and parse appropriately. The result is a list of parsed messages.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hl7_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">'HL7.R'</span>, <span class="st">'extdata/fake-covid-batch.hl7'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">hl7_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parse_hl7_message.html">parse_hl7_message</a></span><span class="op">(</span><span class="va">hl7_file</span><span class="op">)</span></span>
@@ -229,7 +207,7 @@
 <h3 id="multiple-hl7-to-line-list">Multiple HL7 to line list<a class="anchor" aria-label="anchor" href="#multiple-hl7-to-line-list"></a>
 </h3>
 <p>Cycle through each file and use <code><a href="reference/parse_hl7_message.html">parse_hl7_message()</a></code></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Two HL7 files starting with 'fake' are distributed with this package, </span></span>
 <span><span class="va">hl7_files</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">'HL7.R'</span>, <span class="st">'extdata'</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
@@ -289,7 +267,7 @@
 <li>Dates/Datetimes can be converted using <code><a href="reference/datetime_to_hl7_datetime.html">datetime_to_hl7_datetime()</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_hl7_build</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="reference/build_hl7.html">build_hl7</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="reference/MSH.html">MSH</a></span><span class="op">(</span>SendingFacility <span class="op">=</span> <span class="st">'A lab'</span>, ReceivingFacility <span class="op">=</span> <span class="st">'NSW Health'</span>, VersionID <span class="op">=</span> <span class="st">'2.3.1'</span><span class="op">)</span>,</span>
@@ -306,17 +284,17 @@
 <span>                                                                nameOfCodingSystem <span class="op">=</span> <span class="st">'LN'</span><span class="op">)</span>,</span>
 <span>        ObservationValue <span class="op">=</span> <span class="fu"><a href="reference/variedComponents.html">variedComponents</a></span><span class="op">(</span><span class="st">'260415000^Not Detected^SNOMED-CT'</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">example_hl7_build</span></span>
 <span><span class="co">#&gt; MSH|^~\&amp;||A lab||NSW Health||||||2.3.1</span></span>
 <span><span class="co">#&gt; PID||1234|||Ross^Bob||||||123 Fake Street^^Springfield^^90120</span></span>
 <span><span class="co">#&gt; OBX|1|CE|NSW_LOINC-376^nCoV-2019 PCR^LN||260415000^Not Detected^SNOMED-CT</span></span></code></pre></div>
 <p>Conversion of Date and Datetimes</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/datetime_to_hl7_datetime.html">datetime_to_hl7_datetime</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "20230110104020"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "20230117160223"</span></span></code></pre></div>
 <p><code>.trim</code> will trim trailing blank fields. It is <code>TRUE</code> by default</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MSH.html">MSH</a></span><span class="op">(</span>SendingFacility <span class="op">=</span> <span class="st">'NSW HEALTH'</span>, VersionID <span class="op">=</span> <span class="st">'2.3.1'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; MSH|^~\&amp;||NSW HEALTH||||||||2.3.1</span></span>
 <span><span class="fu"><a href="reference/MSH.html">MSH</a></span><span class="op">(</span>SendingFacility <span class="op">=</span> <span class="st">'NSW HEALTH'</span>, VersionID <span class="op">=</span> <span class="st">'2.3.1'</span>, .trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -336,14 +314,14 @@
 <li>convert the row into a list for easy reference e.g. <code>d$firstname</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A 2 row line list with fake data is distributed with this package</span></span>
 <span><span class="va">some_line_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">'HL7.R'</span>, <span class="st">'extdata/fake-covid-n2.csv'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">some_line_list</span></span>
 <span><span class="co">#&gt;   firstname lastname                street      suburb test_id     text_text result_code result_text                facility</span></span>
 <span><span class="co">#&gt; 1     Homer  Simpson 742 Evergreen Terrace Springfield  ncov19 nCoV-2019 PCR           P     Postive      Dr Hibbert Medical</span></span>
 <span><span class="co">#&gt; 2       Ned Flanders 744 Evergreen Terrace Springfield  ncov19 nCoV-2019 PCR           N    Negative Nick Riviera Appartment</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hl7_build_list</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">some_line_list</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">row</span><span class="op">)</span><span class="op">{</span></span>
 <span>    </span>
@@ -365,7 +343,7 @@
 <span>          ObservationValue <span class="op">=</span> <span class="fu"><a href="reference/variedComponents.html">variedComponents</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">result_code</span>, <span class="va">d</span><span class="op">$</span><span class="va">result_text</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hl7_build_list</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; MSH|^~\&amp;||Dr Hibbert Medical||NSW Health||||||2.3.1</span></span>
@@ -376,7 +354,7 @@
 <span><span class="co">#&gt; MSH|^~\&amp;||Nick Riviera Appartment||NSW Health||||||2.3.1</span></span>
 <span><span class="co">#&gt; PID||1|||Ned^Flanders||||||744 Evergreen Terrace^^Springfield</span></span>
 <span><span class="co">#&gt; OBX|1|CE|ncov19^nCoV-2019 PCR^LN||N^Negative</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for filenames 001, 002, etc if necessary</span></span>
 <span><span class="va">n_leading_zero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">'%%0%sd'</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">hl7_build_list</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -388,6 +366,37 @@
 <span>  <span class="va">path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">'some/path'</span>, <span class="va">filename</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">hl7_build_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, con <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="installation-other">Installation other<a class="anchor" aria-label="anchor" href="#installation-other"></a>
+</h2>
+<div class="section level3">
+<h3 id="devops">Devops<a class="anchor" aria-label="anchor" href="#devops"></a>
+</h3>
+<p>Clone repo, open <code>HL7.R.Rproj</code> and use <code>devtools</code></p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Loading HL7.R</span></span>
+<span><span class="co">#&gt; HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="from-archive">From archive<a class="anchor" aria-label="anchor" href="#from-archive"></a>
+</h3>
+<p>Someone built the package and has given you the file - be aware if they built using source or binary. Generally, <code>tar.gz</code> = source, <code>zip</code> = binary</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R.xxx.tar.gz'</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">'source'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R.xxx.zip'</span>, repos <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="from-drat">From DRAT<a class="anchor" aria-label="anchor" href="#from-drat"></a>
+</h3>
+<p>A local package repo may exist. Again, be aware if they built using source or binary. Look for <code>./bin</code> and <code>./src</code> in the DRAT folder.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/eddelbuettel/drat" class="external-link">drat</a></span><span class="op">)</span></span>
+<span><span class="fu">drat</span><span class="fu">::</span><span class="fu">addRepo</span><span class="op">(</span><span class="st">"workgroup"</span>, <span class="st">'file:drive:/path/to/drat'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'HL7.R'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">repos</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="co"># assuming binary</span></span></code></pre></div>
 </div>
 </div>
 </div>
