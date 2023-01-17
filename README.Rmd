@@ -36,34 +36,14 @@ Information on HL7 specifications were sourced from:
 
 ## Installation
 
-### Devops
+``` r
+# install.packages("devtools")
+devtools::install_github("Shaunson26/HL7.R")
+```
 
-Clone repo, open `HL7.R.Rproj` and use `devtools`
-
-```{r}
+```{r, echo=F}
 library(devtools)
 load_all()
-```
-
-### From archive
-
-Someone built the package and has given you the file - be aware if they built using 
-source or binary. Generally, `tar.gz` = source, `zip` = binary
-
-```{r, eval = F}
-install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
-install.packages('HL7.R.xxx.zip', repos = NULL)
-```
-
-### From DRAT
-
-A local package repo may exist. Again, be aware if they built using source or binary.
-Look for `./bin` and `./src` in the DRAT folder.
-
-```{r, eval = F}
-library(drat)
-drat::addRepo("workgroup", 'file:drive:/path/to/drat')
-install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
 ```
 
 ## Parsing a HL7
@@ -314,6 +294,36 @@ for(i in seq_along(hl7_build_list)){
 }
 ```
 
+## Installation other
 
+### Devops
+
+Clone repo, open `HL7.R.Rproj` and use `devtools`
+
+```{r}
+library(devtools)
+load_all()
+```
+
+### From archive
+
+Someone built the package and has given you the file - be aware if they built using 
+source or binary. Generally, `tar.gz` = source, `zip` = binary
+
+```{r, eval = F}
+install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
+install.packages('HL7.R.xxx.zip', repos = NULL)
+```
+
+### From DRAT
+
+A local package repo may exist. Again, be aware if they built using source or binary.
+Look for `./bin` and `./src` in the DRAT folder.
+
+```{r, eval = F}
+library(drat)
+drat::addRepo("workgroup", 'file:drive:/path/to/drat')
+install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
+```
 
 
