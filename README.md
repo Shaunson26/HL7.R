@@ -23,39 +23,14 @@ Information on HL7 specifications were sourced from:
 
 ## Installation
 
-### Devops
-
-Clone repo, open `HL7.R.Rproj` and use `devtools`
-
 ``` r
-library(devtools)
-#> Loading required package: usethis
-load_all()
-#> ℹ Loading HL7.R
-#> HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples
+# install.packages("devtools")
+devtools::install_github("Shaunson26/HL7.R")
 ```
 
-### From archive
-
-Someone built the package and has given you the file - be aware if they
-built using source or binary. Generally, `tar.gz` = source, `zip` =
-binary
-
-``` r
-install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
-install.packages('HL7.R.xxx.zip', repos = NULL)
-```
-
-### From DRAT
-
-A local package repo may exist. Again, be aware if they built using
-source or binary. Look for `./bin` and `./src` in the DRAT folder.
-
-``` r
-library(drat)
-drat::addRepo("workgroup", 'file:drive:/path/to/drat')
-install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
-```
+    #> Loading required package: usethis
+    #> ℹ Loading HL7.R
+    #> HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples
 
 ## Parsing a HL7
 
@@ -296,7 +271,7 @@ Conversion of Date and Datetimes
 
 ``` r
 datetime_to_hl7_datetime(Sys.time())
-#> [1] "20230110104020"
+#> [1] "20230117160223"
 ```
 
 `.trim` will trim trailing blank fields. It is `TRUE` by default
@@ -379,4 +354,39 @@ for(i in seq_along(hl7_build_list)){
   path = file.path('some/path', filename)
   writeLines(hl7_build_list[[i]], con = path)
 }
+```
+
+## Installation other
+
+### Devops
+
+Clone repo, open `HL7.R.Rproj` and use `devtools`
+
+``` r
+library(devtools)
+load_all()
+#> ℹ Loading HL7.R
+#> HL7.R - for help see vignette('Getting-started', package = 'HL7.R') or vignette('package = 'HL7.R') for other examples
+```
+
+### From archive
+
+Someone built the package and has given you the file - be aware if they
+built using source or binary. Generally, `tar.gz` = source, `zip` =
+binary
+
+``` r
+install.packages('HL7.R.xxx.tar.gz', repos = NULL, type = 'source')
+install.packages('HL7.R.xxx.zip', repos = NULL)
+```
+
+### From DRAT
+
+A local package repo may exist. Again, be aware if they built using
+source or binary. Look for `./bin` and `./src` in the DRAT folder.
+
+``` r
+library(drat)
+drat::addRepo("workgroup", 'file:drive:/path/to/drat')
+install.packages('HL7.R', repos = options()$repos[2]) # assuming binary
 ```
